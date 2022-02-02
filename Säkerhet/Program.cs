@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,9 +26,11 @@ namespace Säkerhet
 
         static public void Ingen_säkerhet()
         {
-            Console.WriteLine("Enter two numbers. The first one is numerator and the second is denominator.");
+            Console.WriteLine("Enter two numbers you want to divide.");
 
+            Console.Write("Enter numerator: ");
             int a = int.Parse(Console.ReadLine());
+            Console.Write("Enter denominator: ");
             int b = int.Parse(Console.ReadLine());
 
             int c = a / b;
@@ -39,40 +41,39 @@ namespace Säkerhet
 
         static public void Med_säkerhet()
         {
-            while (true)
+            Console.WriteLine("Enter two numbers you want to divide.");
+
+            try
             {
-                Console.WriteLine("Enter two numbers:");
+                Console.Write("Enter numerator: ");
+                int a = int.Parse(Console.ReadLine());
+                Console.Write("Enter denominator: ");
+                int b = int.Parse(Console.ReadLine());
 
-                try
-                {
-                    int a = int.Parse(Console.ReadLine());
-                    int b = int.Parse(Console.ReadLine());
+                int c = a / b;
+                Console.WriteLine(c);
+            }
 
-                    int c = a / b;
-                    Console.WriteLine(c);
-                }
+            catch (DivideByZeroException)
+            {
+                Console.WriteLine("Cannot divide by zero. Please try again.");
+            }
+            catch (InvalidOperationException)
+            {
+                Console.WriteLine("Invalid operation. Please try again.");
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Not a valid format. Please try again.");
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Error occurred! Please try again.");
+            }
 
-                catch (DivideByZeroException)
-                {
-                    Console.WriteLine("Cannot divide by zero. Please try again.");
-                }
-                catch (InvalidOperationException)
-                {
-                    Console.WriteLine("Invalid operation. Please try again.");
-                }
-                catch (FormatException)
-                {
-                    Console.WriteLine("Not a valid format. Please try again.");
-                }
-                catch (Exception)
-                {
-                    Console.WriteLine("Error occurred! Please try again.");
-                }
-
-                finally
-                {
-                    Console.WriteLine("Re-try with different numbers");
-                }
+            finally
+            {
+                Console.WriteLine("Re-try with different numbers");
             }
         }
     }
